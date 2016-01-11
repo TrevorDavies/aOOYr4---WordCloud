@@ -3,8 +3,26 @@ package ie.gmit.sw.Parser;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+/**
+* Parses a file from a location and returns text
+* Implements Parseable interface
+* 
+* 
+* @author Trevor Davies
+* @version 1.0
+*/
 
 public class FileParser implements Parseable {
+	
+	/**
+	* Method Overridden from Parseable Interface
+	* Builds Strings from URLs or files
+	* Uses buffer to read and StringBuilder to create String
+	* Singleton Factory
+	* @param file File location
+	* @return Text as a String from file
+	* @throws Exception Exception e
+	*/
 
 	@Override
 	public String parser(String file) throws Exception {

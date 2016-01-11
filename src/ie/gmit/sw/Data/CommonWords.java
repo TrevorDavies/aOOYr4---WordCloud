@@ -5,6 +5,13 @@ import java.util.Set;
 
 
 import ie.gmit.sw.Parser.ParserFactory;
+/**
+* Creates a list of common words to be excluded from parsed Maps.
+* Uses ParserFactory to parse the file using the FileParser
+*
+* @author Trevor Davies
+* @version 1.0
+*/
 
 public class CommonWords {
 	
@@ -12,12 +19,18 @@ public class CommonWords {
 	
 	private HashSet<String> stopWords = new HashSet<String>();
 
+	
 	public CommonWords(String f) throws Exception {
 
 		spliterator(pf.getParseable(f, ParserFactory.Type.FILE));
 		
 	}
-	
+	/**
+	 * Method used to add parsed file to stopwords
+	 * 
+	 * @param s String set toLowerCase 
+	 * @return stopWords HashSet
+	 */
 	private Set<String> spliterator(String s){
 		//s.trim();s.toLowerCase();
 		String [] words = s.toLowerCase().split("\\W+\\s+");
@@ -27,6 +40,13 @@ public class CommonWords {
 		return stopWords;
 		
 	}
+	/**
+	* Method used to check if a String is in the list of stopwords
+	* 
+	*
+	* @param word String of a single word character
+	* @return <code>true</code> if <code>Set</code> contains String<code>false</code> if not
+	*/
 	public boolean containsWords(String word)
 	{
 		if(stopWords.contains(word))
@@ -38,79 +58,17 @@ public class CommonWords {
 			return false;
 		}
 	}
-//	public boolean hasWord(String word)
-//	{
-//		boolean isThere = false;
-//		if(stopWords.contains(word))
-//		{
-//			isThere = true;
-//		}
-//		return isThere;
-//	}
+	/**
+	* A method to return the stopwords set
+	* 
+	* @return  <code>Set</code> of Strings
+	* 
+	*/
 	
 	public HashSet<String> getHashSet()
 	{
 		return this.stopWords;
 	}
 	
-	/*
-	private HashSet<String> stopWords = new HashSet<String>();
-	
-	private String stopWordsSource = "stopwords.txt";
-	
-	
-	public CommonWords(String fileName) throws Exception
-	{	
-		fileName = stopWordsSource;
 
-	}
-
-	
-	public String parser() throws Exception 
-	{
-		try
-		{
-			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(stopWordsSource)));
-			
-			String next;
-			
-			while((next = br.readLine())!=null)
-			{
-				next.trim();next.toLowerCase();
-				next.split("\\W+|\\s+");
-				if(!stopWords.contains(next))
-				{
-					stopWords.add(next);
-				}
-				
-			}//end while
-			br.close();
-		}catch(Exception e)
-		{
-			
-		System.out.println(e.getMessage());
-		
-		}
-		return stopWordsSource;
-		
-	}//end parser
-	
-	public boolean containsWords(String word)
-	{
-		if(stopWords.contains(word))
-		{
-			return stopWords.contains(word);
-		}
-		else 
-		{
-			return false;
-		}
-	}
-	public HashSet<String> getHashSet()
-	{
-		return this.stopWords;
-	}
-
-
-*/
 }
